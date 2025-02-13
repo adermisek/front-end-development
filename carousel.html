@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /*definisana je perspektiva od 400px; veličina ovoga elementa je ograničena postavljanjem width i height svojstava, kako prilikom 3D transformisanja 
+    ne bi dolazilo do povećavanja širine i visine HTML stranice; takođe, postavljanjem margine na 80px auto, dodat je gornji i donji spoljašnji razmak i postignuto je 
+    centriranje kompletnog prikaza; 
+    - svaka od pet pločica koje postoje unutar carousela poseduje zajedničke osobine definisane klasom tile; ovom klasom su definisani visina i širina pločica, zaobljenje ivica, 
+    blaga providnost, kao i određene osobine pozadinskih slika; unutar klase tile obavlja se i apsolutno pozicioniranje svake od pločica;
+    - selektorima #tile-1, #tile-2, #tile-3, #tile-4 i #tile-5 selektovane su pojedinačne pločice i na taj način definisane su njihove specifične osobine: pozadinska slika i boja pozadine, 
+    kao i dve transformacije – rotiranje po y-osi i pomeranje po z-osi;
+    - vrednosti rotiranja po y-osi za pojedinačne pločice nisu izabrane nasumično; jednostavno, kako bi se pločice ravnomerno rasporedile unutar vrteške, vrednost punog kruga podeljena 
+    je sa brojem pločica: 360/5=72; na ovaj način je dobijena vrednost koja predstavlja razliku uglova susednih pločica, te je lako zaključiti da su konačne vrednosti uglova:
+     0, 72, 144, 216 i 288;
+     - svaka od pločica je pomerena po z-osi, kako bi se u trodimenzionalnom prostoru stvorilo rastojanje između njih; logično, definisanjem nižih vrednosti, ploče vrteške će biti bliže 
+     jedna drugoj i obrnuto;
+     - svaka od pločica je pomerena po z-osi, kako bi se u trodimenzionalnom prostoru stvorilo rastojanje između njih; logično, definisanjem nižih vrednosti, ploče vrteške će biti bliže jedna
+      drugoj i obrnuto;
+     - s obzirom na to da su 3D transformacije definisane i na roditeljskom, ali i na elementima potomcima, na elementu tile-container je definisano CSS svojstvo transform-style sa 
+     vrednošću preserve-3d; na ovaj način je očuvan 3D prostor elemenata potomaka, odnosno u ovom primeru – pločica vrteške.
+    */
+    /* animaciju koja je definisana korišćenjem četiri ključna kadra. U svakom od kadrova animira se rotacija po y-osi. 
+    Ovako kreirana animacija na elementu se konfiguriše na sledeći način u #title-container di pise animation svugdje */
+        #main-container {
+            perspective: 400px;
+            position: relative;
+            width: 300px;
+            height: 220px;
+            margin: 80px auto;
+        }
+
+        #tile-container {
+            transform: translateZ(-300px) rotate3d(0, 1, 0, 0deg);
+            transform-style: preserve-3d;
+            animation-name: carousel-animation;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-delay: 1s;
+        }
+
+        .tile {
+            width: 300px;
+            height: 220px;
+            border-radius: 8px;
+            position: absolute;
+            margin: 0 auto;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 64px;
+            opacity: 0.95;
+        }
+
+
+        #tile-1 {
+            background-image: url("img/like.png");
+            background-color: #914E67;
+            transform: rotateY(0deg) translateZ(300px);
+        }
+
+        #tile-2 {
+            background-image: url("img/idea.png");
+            background-color: #4FBA6F;
+            transform: rotateY(72deg) translateZ(300px);
+        }
+
+        #tile-3 {
+            background-image: url("img/clock.png");
+            background-color: #5192D2;
+            transform: rotateY(144deg) translateZ(300px);
+        }
+
+        #tile-4 {
+            background-image: url("img/star.png");
+            background-color: #E8BF1C;
+            transform: rotateY(216deg) translateZ(300px);
+        }
+
+        #tile-5 {
+            background-image: url("img/note.png");
+            background-color: #5D7586;
+            transform: rotateY(288deg) translateZ(300px);
+        }
+        @keyframes carousel-animation {
+    0% {
+        transform: translateZ(-300px) rotate3d(0, 1, 0, 0deg);
+    }
+ 
+    45% {
+        transform: translateZ(-300px) rotate3d(0, 1, 0, 160deg);
+    }
+ 
+    55% {
+        transform: translateZ(-300px) rotate3d(0, 1, 0, 160deg);
+    }
+ 
+    100% {
+         transform: translateZ(-300px) rotate3d(0, 1, 0, 360deg);
+    }
+}
+    </style>
+</head>
+
+<body>
+    <div id="main-container">
+        <div id="tile-container">
+            <div class="tile" id="tile-1"></div>
+            <div class="tile" id="tile-2"></div>
+            <div class="tile" id="tile-3"></div>
+            <div class="tile" id="tile-4"></div>
+            <div class="tile" id="tile-5"></div>
+        </div>
+    </div>
+    <!-- Unutar glavnog omotača (main-container) nalazi se još jedan omotač (tile-container), koji sadrži pet div elemenata. 
+    Svaki od ovih pet div elemenata predstavlja po jedan od pravougaonika. 
+    Ovih pet div elemenata poseduju zajedničku klasu title, a svaki je obeležen i id atributom specifične vrednosti. -->
+</body>
+
+</html>
