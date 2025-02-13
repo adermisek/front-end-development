@@ -1,0 +1,90 @@
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+}
+.sidebar{
+    position:fixed;
+    background: #0792fc;
+    height: 100%;
+    width: 200px;
+    top:0;
+    left: 0;
+    z-index: 1;
+}
+.sidebar ul li{
+    margin: 25px 0;
+}
+.sidebar ul li a{
+    color:white;
+    padding: 0 10px;
+}
+.sidebar ul li a:hover{
+    color: black;
+    margin-left: 10px;
+    transition: 0.4s;
+}
+body{
+   box-sizing: border-box;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-bottom: 27px;
+    min-height: 100vh;
+    position: relative;
+}
+.main{
+    margin-left: 200px;
+    padding: 5px;
+}
+#lit{
+    font-family: 'Patrick Hand', cursive;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+p{
+    font-family: 'Patrick Hand', cursive;
+    font-size: 20px;
+}
+#tekst{
+    font-family: 'Zilla Slab', serif;
+}
+#slika{
+    float:left;
+    margin:5px;
+}
+footer{
+    text-align: center;
+    font-family: 'Zilla Slab', serif;
+    bottom: 0;
+    position: absolute;
+    width:100%;
+    background: #0792fc;
+}
+table, th,td {
+    border: 1px solid black;
+    border-collapse: collapse;
+   
+}
+table{
+    margin-right: auto;
+    margin-left: auto;
+}
+th {
+    height: 30px;
+    padding: 15px;
+    background-color:  #73bef7;
+    font-size: large;
+    font-family: 'Permanent Marker', cursive;
+}
+td{
+    text-align: center;
+    padding: 10px;
+    font-family: 'Patrick Hand', cursive;
+}
+#literary_work{
+    background-color: #c9e6fc;
+}
+#naslov{
+    font-family: 'Indie Flower', cursive;
+    font-weight: bold
+  
+}
