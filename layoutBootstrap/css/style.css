@@ -1,0 +1,88 @@
+body {
+    font-family: 'Patrick Hand', cursive;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/********************HEADER************************/
+header {
+    background: #e4e2e21f;
+}
+
+header a {
+    color: gray;
+    margin-left: 8px;
+}
+
+header a:hover {
+    color: black;
+    font-weight: bold;
+}
+
+@media (max-width:480px) {
+    #menu-icon {
+        width: 32px;
+    }
+}
+
+#menu-icon {
+    width: 32px;
+}
+
+
+/***************HERO SECTION ************************/
+#hero-cite {
+    position: absolute;
+    top: 100px;
+    left: 50px;
+}
+
+@media (max-width:576px) {
+    #hero-cite {
+        position: absolute;
+        top: 50px;
+        left: 10px;
+    }
+}
+
+@media (min-width:576px) and (max-width:768px) {
+    #hero-cite {
+        position: absolute;
+        top: 50px;
+        left: 100px;
+    }
+}
+
+
+/*******************RECENT SECTION*******************/
+
+@media (max-width:768px) {
+    #image-section {
+        width: 100%;
+    }
+}
+
+/*******************BLOG SECTION*******************/
+
+@media (max-width:1200px) {
+    #blog-image {
+        width: 100%;
+    }
+}
+
+
+/*******************ABOUT SECTION*******************/
+#about {
+    background: rgb(18 18 18 / 87%);
+    color: white;
+}
+
+#about hr {
+    border-top: 1px solid #ffffff66;
+}
+
+
+/*******************FOOTER*******************/
+footer {
+    background: #312423;
+}
