@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analog Clock</title>
+    <style>
+        #my-canvas {
+            border: #cacaca 1px solid;
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="my-canvas" width="400" height="400">
+        Your web browser does not support canvas element.
+    </canvas>
+    <script>
+        window.onload = function () {
+            let canvas = document.getElementById("my-canvas");
+            let context = canvas.getContext("2d");
+
+            let clockX = canvas.width / 2;
+            let clockY = canvas.height / 2;
+            let clockRadius = 100;
+
+            function drawClock() {
+                context.clearRect(0, 0, canvas.width, canvas.height); 
+
+                let now = new Date();
+                let hour = now.getHours() % 12;
+                let minute = now.getMinutes();
+                let second = now.getSeconds();
+
+                let perimeterCircle = 2 * Math.PI;
+
+                let hourAngle = perimeterCircle * ((hour + minute / 60) / 12) - perimeterCircle / 4;
+                let minuteAngle = perimeterCircle * (minute / 60) - perimeterCircle / 4;
+                let secondAngle = perimeterCircle * (second / 60) - perimeterCircle / 4;
+
+                let targetXHour = clockX + Math.cos(hourAngle) * 0.5 * clockRadius;
+                let targetYHour = clockY + Math.sin(hourAngle) * 0.5 * clockRadius;
+
+                let targetXMinute = clockX + Math.cos(minuteAngle) * 0.75 * clockRadius;
+                let targetYMinute = clockY + Math.sin(minuteAngle) * 0.75 * clockRadius;
+
+                let targetXSecond = clockX + Math.cos(secondAngle) * clockRadius;
+                let targetYSecond = clockY + Math.sin(secondAngle) * clockRadius;
+
+                context.beginPath();
+                context.arc(clockX, clockY, clockRadius, 0, 2 * Math.PI);
+                context.strokeStyle = "black";
+                context.lineWidth = 3;
+                context.stroke();
+
+                context.font = clockRadius * 0.15 + "px arial";
+                context.textBaseline = "middle";
+                context.textAlign = "center";
+                context.fillStyle = "black";
+
+                for (let n = 1; n <= 12; n++) {
+                    let t = (n - 3) * (perimeterCircle) / 12;
+                    let x = clockX + clockRadius * 0.85 * Math.cos(t);
+                    let y = clockY + clockRadius * 0.85 * Math.sin(t);
+                    context.fillText(n, x, y);
+                }
+
+                context.lineWidth = 6;
+                context.strokeStyle = 'black';
+                context.beginPath();
+                context.moveTo(clockX, clockY);
+                context.lineTo(targetXHour, targetYHour);
+                context.stroke();
+
+                context.lineWidth = 4;
+                context.beginPath();
+                context.moveTo(clockX, clockY);
+                context.lineTo(targetXMinute, targetYMinute);
+                context.stroke();
+
+                context.lineWidth = 2;
+                context.strokeStyle = "red";
+                context.beginPath();
+                context.moveTo(clockX, clockY);
+                context.lineTo(targetXSecond, targetYSecond);
+                context.stroke();
+
+                context.beginPath();
+                context.arc(clockX, clockY, 4, 0, 2 * Math.PI);
+                context.fillStyle = "black";
+                context.fill();
+            }
+
+            drawClock(); 
+            setInterval(drawClock, 1000); 
+        }
+    </script>
+</body>
+
+</html>
