@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 2 - Website Building</title>
+    <style>
+        body {
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        #login-container {
+            width: 460px;
+            margin: 0 auto;
+        }
+
+        form label,
+        form input {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        form input {
+            padding: 8px;
+        }
+
+        form label {
+            font-weight: bold;
+        }
+
+        form div {
+            margin: 16px 0px;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group span {
+            position: absolute;
+            top: 26px;
+            right: 25px;
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/e4445c9d79.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <div id="login-container">
+
+        <form>
+            <div class="input-group">
+                <label for="username">Username:</label>
+                <input id="username" type="text">
+                <span id="usernameError"></span>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input id="password" type="password">
+                <span id="passwordError"></span>
+            </div>
+            <input type="submit" value="Login">
+        </form>
+
+        <p id="output"></p>
+
+    </div>
+
+    <script>
+        let loginForm = document.getElementById("login-container");
+
+        loginForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            let username = document.getElementById("username");
+            let password = document.getElementById("password");
+            var usernameError = document.getElementById("usernameError");
+            var passwordError = document.getElementById("passwordError");
+            var output = document.getElementById("output");
+
+            if (username.value == "new_user" && password.value == "123456789") {
+
+                username.style.border = "2px solid #00FF00";
+                password.style.border = "2px solid #00FF00";
+
+                usernameError.innerHTML = '<i class="fa-solid fa-check fa-sm" style="color:#00FF00"></i>';
+                passwordError.innerHTML = '<i class="fa-solid fa-check fa-sm" style="color:#00FF00"></i>';
+
+                output.innerHTML = "Successful login!"
+
+            } else {
+                if (username.value != "new_user" && password.value != "123456789") {
+                    if (password.value.length == 0 && username.value.length == 0) {
+                        username.style.border = "2px solid red";
+                        password.style.border = "2px solid red";
+
+                        usernameError.innerHTML = '<i class="fa-sharp fa-solid fa-xmark" style="color:#FF0000"></i>';
+                        passwordError.innerHTML = '<i class="fa-sharp fa-solid fa-xmark" style="color:#FF0000"></i>';
+
+                        output.innerHTML = "Please enter username and password."
+                    } else {
+                        username.style.border = "2px solid red";
+                        password.style.border = "2px solid red";
+
+                        usernameError.innerHTML = '<i class="fa-sharp fa-solid fa-xmark" style="color:#FF0000"></i>';
+                        passwordError.innerHTML = '<i class="fa-sharp fa-solid fa-xmark" style="color:#FF0000"></i>';
+
+                        output.innerHTML = "Please enter valid username and password."
+                    }
+
+
+                } else if (password.value != "123456789" && username.value == "new_user") {
+
+                    if (password.value.length == 0) {
+                        password.style.border = "2px solid red";
+                        username.style.border = "2px solid #00FF00";
+
+                        passwordError.innerHTML = '<i class="fa-sharp fa-solid fa-xmark" style="color:#FF0000"></i>';
+                        usernameError.innerHTML = '<i class="fa-solid fa-check fa-sm" style="color:#00FF00"></i>';
+
+                        output.innerHTML = "*please, enter password."
+                    } else {
+                        password.style.border = "2px solid red";
+                        username.style.border = "2px solid #00FF00";
+
+                        passwordError.innerHTML = '<i class="fa-sharp fa-solid fa-xmark" style="color:#FF0000"></i>';
+                        usernameError.innerHTML = '<i class="fa-solid fa-check fa-sm" style="color:#00FF00"></i>';
+
+                        output.innerHTML = "*please, enter valid password."
+                    }
+
+                } else if (username.value != "new_user" && password.value == "123456789") {
+
+                    if (username.value.length == 0) {
+                        username.style.border = "2px solid red";
+                        password.style.border = "2px solid #00FF00";
+
+                        usernameError.innerHTML = '<i class="fa-sharp fa-solid fa-xmark" style="color:#FF0000"></i>';
+                        passwordError.innerHTML = '<i class="fa-solid fa-check fa-sm" style="color:#00FF00"></i>';
+
+                        output.innerHTML = "*please, enter username."
+                    } else {
+                        username.style.border = "2px solid red";
+                        password.style.border = "2px solid #00FF00";
+
+                        usernameError.innerHTML = '<i class="fa-sharp fa-solid fa-xmark" style="color:#FF0000"></i>';
+                        passwordError.innerHTML = '<i class="fa-solid fa-check fa-sm" style="color:#00FF00"></i>';
+
+                        output.innerHTML = "*please, enter valid username."
+                    }
+                }
+            }
+        });           
+    </script>
+</body>
+
+</html>
